@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .layout-wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;   /* important */
+    width:100%;
+    height:100%;
+    padding:40px 60px;
+}
+
+        .bunny-section {
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+        }
+
+        .container{
+    text-align:center;
+    position:relative;
+    z-index:10;
+    max-width:500px;
+    margin-left:80px;   /* spacing from bunny */
+}
+
+        .question {
+            font-size: 48px;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+       .bunny-container{
+    position:relative;
+    width:130px;
+    height:180px;
+    display:flex;
+    align-items:flex-end;
+}
+
+        button {
+            padding: 15px 40px;
+            font-size: 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .no-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .ok-btn {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+        }
+
+        .ok-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(67, 233, 123, 0.4);
+        }
+
+        /* Grass Animation */
+        .grass-field{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:120px;
+    display:flex;
+    justify-content:space-between;
+    pointer-events:none;
+}
+
+.blade{
+    width:4px;
+    height:80px;
+    background:linear-gradient(#4CAF50,#2e7d32);
+    border-radius:50%;
+    transform-origin:bottom;
+    animation:grassWind 3s ease-in-out infinite alternate;
+}
+
+@keyframes grassWind{
+    from{
+        transform:rotate(-10deg);
+    }
+    to{
+        transform:rotate(10deg);
+    }
+}
+
+        /* Bunny Styles */
+        .bunny-container{
+    position:relative;
+    width:130px;
+    height:170px;
+}
+
+.bunny{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+/* HEAD */
+.face{
+    width:80px;
+    height:80px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* EARS */
+.ears{
+    position:absolute;
+    width:100%;
+    top:-10px;
+}
+
+.ear{
+    width:22px;
+    height:70px;
+    background:white;
+    border-radius:50px;
+    position:absolute;
+    border:3px solid #ffb6c1;
+    transform-origin:bottom;
+}
+
+.ear.left{
+    left:25px;
+    animation:earWiggle 2s infinite;
+}
+
+.ear.right{
+    right:25px;
+    animation:earWiggle 2s infinite reverse;
+}
+
+@keyframes earWiggle{
+    0%,100%{ transform:rotate(-10deg); }
+    50%{ transform:rotate(15deg); }
+}
+
+/* EYES */
+
+.eyes{
+    position:absolute;
+    top:25px;
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+}
+
+.eye{
+    width:10px;
+    height:10px;
+    background:black;
+    border-radius:50%;
+    animation:blink 4s infinite;
+}
+
+@keyframes blink{
+    0%,95%,100%{ transform:scaleY(1); }
+    97%{ transform:scaleY(0.1); }
+}
+
+/* NOSE */
+
+.nose{
+    width:8px;
+    height:8px;
+    background:pink;
+    border-radius:50%;
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* MOUTH */
+
+.mouth{
+    width:20px;
+    height:12px;
+    border-bottom:3px solid black;
+    border-radius:0 0 20px 20px;
+    position:absolute;
+    top:48px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* BODY */
+
+.body{
+    width:70px;
+    height:80px;
+    background:white;
+    border-radius:40px;
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* FEET */
+
+.feet{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.foot{
+    width:18px;
+    height:14px;
+    background:white;
+    border-radius:50%;
+    border:2px solid #ffb6c1;
+}
+
+/* JUMP */
+
+.bunny-jumping{
+    animation:jump 0.8s infinite ease-in-out;
+}
+
+@keyframes jump{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-25px);
+    }
+}
+
+/* HAPPY */
+
+.bunny-happy{
+    animation:happyBounce 0.6s infinite;
+}
+
+@keyframes happyBounce{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.1); }
+}
+         
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            opacity: 0;
+            animation: flowerAppear 1s ease-out forwards;
+        }
+
+        @keyframes flowerAppear {
+            0% {
+                opacity: 0;
+                transform: translate(0, -50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(40px, 0);
+            }
+        }
+        .heart{
+    position:absolute;
+    font-size:22px;
+    animation:heartFloat 4s linear forwards;
+}
+
+@keyframes heartFloat{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-200px);
+        opacity:0;
+    }
+}
+/*firelies*/
+.firefly{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#fffacd;
+    border-radius:50%;
+    box-shadow:0 0 10px #fffacd;
+    animation:fireflyMove 6s linear infinite;
+}
+
+@keyframes fireflyMove{
+    0%{ transform:translate(0,0); }
+    50%{ transform:translate(80px,-60px); }
+    100%{ transform:translate(-40px,40px); }
+}
+/*moving clouds*/
+.cloud{
+    position:absolute;
+    font-size:50px;
+    top:60px;
+    opacity:0.9;
+    animation:cloudMove linear infinite;
+}
+
+@keyframes cloudMove{
+    from{ left:-200px; }
+    to{ left:110%; }
+}
+/* Flower petals */
+        .petal {
+            width: 15px;
+            height: 15px;
+            background: #FF69B4;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .petal1 { top: 0; left: 0; }
+        .petal2 { top: 0; right: 0; }
+        .petal3 { top: 5px; left: -5px; }
+        .petal4 { top: 5px; right: -5px; }
+        .petal5 { top: 15px; left: 2.5px; }
+
+        .stem {
+            width: 3px;
+            height: 35px;
+            background: #228B22;
+            margin: -5px auto 0;
+        }
+
+        .input-container {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid white;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        /*grass flower*/
+    .grass-flower{
+    position: absolute;
+    animation:bloom 0.8s ease forwards, flowerWind 3s ease-in-out infinite alternate;
+}
+
+@keyframes flowerWind{
+
+    from{
+        transform:rotate(-3deg);
+    }
+
+    to{
+        transform:rotate(3deg);
+    }
+
+}
+
+@keyframes bloom{
+
+    0%{
+        transform:scale(0) translateY(20px);
+        opacity:0;
+    }
+
+    60%{
+        transform:scale(1.2) translateY(-5px);
+    }
+
+    100%{
+        transform:scale(1) translateY(0);
+        opacity:1;
+    }
+
+}
+
+        .special-message {
+            font-size: 60px;
+            color: #FFB6C1;
+            animation: pulse 1s ease-in-out infinite;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .note {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #FFFF99;
+            border-radius: 5px;
+            opacity: 0;
+            animation: noteAppear 1s ease-out forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            padding: 5px;
+            text-align: center;
+            color: #333;
+        }
+
+        @keyframes noteAppear {
+            0% {
+                opacity: 0;
+                transform: rotate(-45deg) translate(-50px, -50px);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0deg) translate(20px, -60px);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .bunny-speech{
+    position:absolute;
+    bottom:160px;
+    left:140px;
+    background:white;
+    color:#333;
+    padding:8px 14px;
+    border-radius:15px;
+    font-size:16px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    animation:speechPop 0.4s ease;
+}
+
+.bunny-speech::after{
+    content:"";
+    position:absolute;
+    bottom:-8px;
+    left:20px;
+    border-width:8px;
+    border-style:solid;
+    border-color:white transparent transparent transparent;
+}
+
+@keyframes speechPop{
+    from{
+        transform:scale(0);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+.bee{
+    position:absolute;
+    font-size:28px;
+    z-index:20;
+    animation:beePath 10s linear infinite;
+}
+
+/* Bee flight path */
+
+@keyframes beePath{
+
+    0%{
+        left:-50px;
+        top:70%;
+        transform:rotate(0deg);
+    }
+
+    20%{
+        left:20%;
+        top:65%;
+        transform:rotate(10deg);
+    }
+
+    40%{
+        left:40%;
+        top:68%;
+        transform:rotate(-10deg);
+    }
+
+    60%{
+        left:60%;
+        top:63%;
+        transform:rotate(10deg);
+    }
+
+    80%{
+        left:80%;
+        top:66%;
+        transform:rotate(-10deg);
+    }
+
+    100%{
+        left:110%;
+        top:64%;
+        transform:rotate(0deg);
+    }
+
+}
+    </style>
+</head>
+<body>
+    <div class="grass-field"></div>
+    
+    <div class="layout-wrapper">
+        <div class="bunny-container">
+    <div class="bunny">
+        <div class="ears">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+        </div>
+
+        <div class="face">
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+        </div>
+
+        <div class="body"></div>
+
+        <div class="feet">
+            <div class="foot"></div>
+            <div class="foot"></div>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="question" id="question">maaf krdo</div>
+            <div class="button-container" id="buttonContainer">
+                <button class="yes-btn" onclick="handleYes()">YES ✓</button>
+                <button class="no-btn" onclick="handleNo()">NO ✗</button>
+            </div>
+            <div class="input-container hidden" id="inputContainer">
+                <input type="text" id="itemsInput" placeholder="type the items you want :)">
+                <button class="ok-btn" onclick="handleOk()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stage = 0; // 0: initial, 1: flower, 2: input, 3: last chance
+        const bunnyContainer = document.querySelector('.bunny-container');
+        const question = document.getElementById('question');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const inputContainer = document.getElementById('inputContainer');
+
+        function handleYes() {
+            bunnyContainer.classList.add('bunny-happy');
+            question.textContent = '💕 YAAYEE! LOVE YOU 💕';
+            question.style.fontSize = '40px';
+            buttonContainer.innerHTML = '<div class="special-message">💕</div>';
+            
+            // Confetti effect
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.fontSize = '30px';
+                confetti.textContent = '💕';
+                confetti.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
+                document.body.appendChild(confetti);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to {
+                        transform: translateY(100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.querySelector(".mouth").style.borderRadius = "20px";
+            document.querySelector(".mouth").style.borderBottom = "4px solid #ff69b4";
+            document.head.appendChild(style);
+        }
+
+        function handleNo() {
+
+    if (stage === 0) {
+        // flower
+        stage = 1;
+        showFlower();
+        question.textContent = 'ab? 🌸';
+        question.style.animation = 'slideDown 0.5s ease-out';
+    } 
+
+    else if (stage === 1) {
+        // bunny sings
+        stage = 2;
+        bunnySing();
+    } 
+
+    else if (stage === 2) {
+        // ask items
+        stage = 3;
+
+        bunnyContainer.classList.remove('bunny-jumping');
+        buttonContainer.classList.add('hidden');
+        inputContainer.classList.remove('hidden');
+
+        question.textContent = 'type the items you want :) budget mei:(';
+    } 
+
+    else if (stage === 3) {
+        // final message
+        question.textContent = 'ran out of options :(\ncome online at sky :)';
+
+        buttonContainer.innerHTML =
+            '<div style="color:white;font-size:30px;margin-top:20px;">🌙 ⭐</div>';
+
+        stage = 4;
+    }
+}
+
+
+      function showFlower(){
+
+    const grassTop = window.innerHeight - 100;
+
+    for(let i=0;i<12;i++){
+
+        const flower=document.createElement("div");
+        flower.className="grass-flower";
+        flower.innerHTML=["🌸","🌼","🌺"][Math.floor(Math.random()*3)];
+
+        let x=80 + i*80 + (Math.random()*40-20);
+        let y=grassTop-(Math.random()*20);
+
+        flower.style.left=x+"px";
+        flower.style.top=y+"px";
+
+        document.body.appendChild(flower);
+    }
+
+    spawnBee();
+
+    bunnyTalk("look i tried 🥺");
+
+    question.textContent="flowers even grew 🌸";
+}
+function spawnBee(){
+
+    const bee=document.createElement("div");
+
+    bee.className="bee";
+    bee.innerHTML="🐝";
+
+    document.body.appendChild(bee);
+
+}
+
+        function handleOk() {
+            const itemsInput = document.getElementById('itemsInput').value;
+            if (!itemsInput.trim()) {
+                alert('Please type something :)');
+                return;
+            }
+
+            stage = 3;
+            inputContainer.classList.add('hidden');
+            buttonContainer.classList.remove('hidden');
+
+            // Show note animation
+            const note = document.createElement('div');
+            note.className = 'note';
+            note.textContent = `"${itemsInput.substring(0, 15)}...(ss it and send me)"`;
+            bunnyContainer.appendChild(note);
+
+            // Animate bunny reading and nodding
+            bunnyContainer.style.animation = 'bunnyRead 1s ease-in-out';
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes bunnyRead {
+                    0%, 100% {
+                        transform: rotateZ(0deg);
+                    }
+                    25% {
+                        transform: rotateZ(5deg);
+                    }
+                    75% {
+                        transform: rotateZ(-5deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            setTimeout(() => {
+                question.textContent = 'ab toh maaf krdo';
+                question.style.animation = 'slideDown 0.5s ease-out';
+                bunnyContainer.style.animation = 'none';
+                
+                // Add okaySign
+                const okaySign = document.createElement('div');
+                okaySign.style.position = 'absolute';
+                okaySign.style.top = '100px';
+                okaySign.style.left = '90px';
+                okaySign.style.fontSize = '40px';
+                okaySign.style.animation = 'okayAppear 1s ease-out forwards';
+                okaySign.textContent = '👍';
+                bunnyContainer.appendChild(okaySign);
+
+                const okayStyle = document.createElement('style');
+                okayStyle.textContent = `
+                    @keyframes okayAppear {
+                        0% {
+                            opacity: 0;
+                            transform: scale(0);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(okayStyle);
+            }, 1000);
+        }
+
+        // Initialize
+        bunnyContainer.classList.add('bunny-jumping');
+        const field = document.querySelector(".grass-field");
+
+for(let i=0;i<120;i++){
+    const blade = document.createElement("div");
+    blade.classList.add("blade");
+
+    blade.style.height = (40 + Math.random()*80) + "px";
+    blade.style.animationDelay = Math.random()*3 + "s";
+
+    field.appendChild(blade);
+}
+
+function bunnyTalk(message){
+    const bubble = document.createElement("div");
+    bubble.className = "bunny-speech";
+    bubble.textContent = message;
+
+    document.body.appendChild(bubble);
+
+    setTimeout(()=>{
+        bubble.remove();
+    },4000);
+}
+
+function bunnySing(){
+
+    question.textContent="I'll sing for you 🎶";
+
+    const song=document.getElementById("loveSong");
+    song.play();
+
+    // floating hearts
+    const heartInterval=setInterval(()=>{
+
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💕";
+
+        heart.style.left=Math.random()*window.innerWidth+"px";
+        heart.style.bottom="100px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),4000);
+
+    },400);
+
+    // fireflies
+    for(let i=0;i<50;i++){
+        const f=document.createElement("div");
+        f.className="firefly";
+
+        f.style.left=Math.random()*window.innerWidth+"px";
+        f.style.top=Math.random()*window.innerHeight+"px";
+
+        document.body.appendChild(f);
+    }
+    function createClouds(){
+
+    for(let i=0;i<5;i++){
+
+        const cloud=document.createElement("div");
+        cloud.className="cloud";
+        cloud.innerHTML="☁️";
+
+        cloud.style.top=(40 + Math.random()*120)+"px";
+        cloud.style.animationDuration=(40 + Math.random()*30)+"s";
+        cloud.style.fontSize=(40 + Math.random()*40)+"px";
+
+        cloud.style.left=Math.random()*window.innerWidth+"px";
+
+        document.body.appendChild(cloud);
+    }
+}
+
+createClouds();
+
+
+    // clouds
+    const cloud=document.createElement("div");
+    cloud.className="cloud";
+    cloud.innerHTML="☁️";
+    document.body.appendChild(cloud);
+
+    // stop singing after 8 seconds
+    setTimeout(()=>{
+
+        clearInterval(heartInterval);
+        song.pause();
+
+        question.textContent="ab toh maaf krdo 🥺";
+
+    },135000);
+
+}
+    </script>
+    <audio id="loveSong">
+  <source src="beabadoobee_-_Glue_Song_(mp3.pm).mp3" type="audio/mpeg">
+</audio>
+</body>
+</html>
